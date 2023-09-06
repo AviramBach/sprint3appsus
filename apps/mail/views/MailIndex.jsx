@@ -8,7 +8,6 @@ const { useState, useEffect } = React
 export function MailIndex() {
     const [mails, setMails] = useState(null)
     const [criteria, setCriteria] = useState(mailService.getDefaultCriteria())
-
     useEffect(() => {
         mailService.query(criteria).then(mails => {
             setMails(mails)
