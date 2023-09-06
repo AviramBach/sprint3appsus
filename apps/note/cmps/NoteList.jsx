@@ -1,3 +1,21 @@
-export function NoteList() {
-    return <div>note list</div>
+import { NotePreview } from './NotePreview.jsx'
+const { Link } = ReactRouterDOM
+
+export function NoteList({notes, onRemoveNote}) {
+    return <ul className='note-list'>
+        {notes.map(note => (
+            <li key={note.id } className='note-card'>
+                <NotePreview note={note} />
+
+
+                <section>
+                    <button onClick={() => onRemoveNote(note.id)}>Remove note</button>
+                    <button>
+                        <Link to={`/note/edit/${note.id}`}>Edit</Link>
+                    </button>
+                </section>
+            </li>
+        ))}
+    </ul>
 }
+
