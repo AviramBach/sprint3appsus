@@ -6,14 +6,12 @@ export function NoteList({notes, onRemoveNote}) {
         {notes.map(note => (
             <li key={note.id } className='note-card'>
                 <NotePreview note={note} />
-
-
-                <section>
+                <div className='note-footer'>
                     <button onClick={() => onRemoveNote(note.id)}>Remove note</button>
                     <button>
                         <Link to={`/note/edit/${note.id}`}>Edit</Link>
                     </button>
-                </section>
+                </div>
             </li>
         ))}
     </ul>
