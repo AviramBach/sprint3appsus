@@ -40,9 +40,29 @@ export const mailService = {
 function query(criteria) {
     return storageService.query(MAILS_KEY).then(mails => {
         if (criteria.status === 'inbox') {
-            mails.filter(mail => mail.to === loggedinUser.email)
-        } else if (criteria.status === 'sent') {
-            mails.filter(mail => mail.from === loggedinUser.email)
+            console.log('inbox')
+            mails = mails.filter(mail => mail.from !== loggedinUser.email)
+        }
+        if (criteria.txt) {
+            console.log(criteria.txt)
+            mails = mails.filter(mail => mail.from.includes(criteria.txt.toLowerCase()))
+        }
+        if (criteria.filter === 'unread') {
+            mails = mails.filter(mail => !mail.isRead)
+        }
+        if (criteria.filter === 'read') {
+            mails = mails.filter(mail => mail.isRead)
+        }
+        if (criteria.sort === 'date') {
+            console.log('date')
+            // mails = mails.
+        }
+        if (criteria.sort === 'name') {
+            console.log('name')
+            mails = mails.sort((mail1, mail2) => {
+                if (mail1.from > mail2.from) return 1
+                return -1
+            })
         }
         return mails
     })
