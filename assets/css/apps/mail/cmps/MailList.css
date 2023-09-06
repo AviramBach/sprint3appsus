@@ -1,1 +1,16 @@
  /* mail list */
+
+ .mail-list {
+     list-style-type: none;
+     padding: 5px;
+ }
+
+ .mail-list li {
+     padding: 5px;
+     border: 1px solid gray;
+ }
+
+ .mail-list li:hover {
+     background-color: rgb(204, 204, 204);
+     cursor: default;
+ }
