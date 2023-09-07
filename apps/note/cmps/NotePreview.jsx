@@ -1,5 +1,6 @@
 export function NotePreview({ note }) {
-    return (
+    
+  return (
         <article className='note-preview'>
         {note && (
           <div >
@@ -14,9 +15,9 @@ export function NotePreview({ note }) {
             )}
             {note.type === 'NoteTodos' && note.info && note.info.todos && (
               <ul>
-                {note.info.todos.map((todo, index) => (
+                {note.info.todos.map(((todo, index) => (
                   <li key={index}>{todo.txt}</li>
-                ))}
+                )))}
               </ul>
             )}
           </div>

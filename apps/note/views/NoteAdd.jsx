@@ -7,21 +7,24 @@ const { useNavigate, useParams } = ReactRouterDOM
 
 
 
-export function NoteEdit() {
+export function NoteAdd({onAddNote}) {
     const [noteToAdd, setNoteToAdd] = useState(noteService.getEmptyNote())
+    const [formSubmitted, setFormSubmitted] = useState(false);
     const navigate = useNavigate()
     const params = useParams()
+    const [notes, setNotes] = useState(null)
 
     useEffect(() => {
-        if (params.noteId) loadNote()
-        console.log(params.noteId);
-    }, [])
+         loadNote()
+    }, [formSubmitted])
 
+   
     function loadNote() {
-        noteService
-            .get(params.noteId)
-            .then(setNoteToAdd)
-            .catch(err => console.log('err:', err))
+        // noteService
+        //     .get(noteToAdd.id)
+        //     .then(setNoteToAdd)
+        //     .catch(err => console.log('err:', err))
+        setNoteToAdd(noteToAdd)
     }
 
     function handleChange({ target }) {
@@ -63,7 +66,8 @@ export function NoteEdit() {
                 .save(noteToAdd)
                 .then(() => {
                     //   showSuccessMsg(`Note saved successfully`)
-                    navigate('/note')
+                    setFormSubmitted(true)
+                    resetForm()
                 })
                 .catch(err => {
                     console.log('err:', err)
@@ -71,9 +75,10 @@ export function NoteEdit() {
                 })
         }
 
-        function onBack() {
-            navigate('/note')
-        }
+        const resetForm = () => {
+            setNoteToAdd(noteService.getEmptyNote());
+            setFormSubmitted(false);
+        };
 
         return (
             <section className='add-note'>
@@ -101,7 +106,7 @@ export function NoteEdit() {
                         name='txt'
                     />}
 
-                    {noteToAdd.type === 'NoteTodos' && (
+                    {/* {noteToAdd.type === 'NoteTodos' && (
                         <div className='edit-note-todos'>
                             <label htmlFor='todos'>Todos:</label>
                             <ul>
@@ -126,14 +131,14 @@ export function NoteEdit() {
                                 ))}
                             </ul>
                         </div>
-                    )}
+                    )} */}
 
 
 
 
-                    <button className="save-btn">Save</button>
+                    <button className="save-btn" >Save</button>
                 </form>
-                <button className="close-btn" onClick={onBack}>Back</button>
+                {/* <button className="close-btn" onClick={onBack}>Back</button> */}
             </section>
         )
     }
