@@ -13,6 +13,7 @@ export function NoteList({ notes, onRemoveNote, onChangeNoteColor }) {
 
     const colors = ['red', 'blue', 'green', 'yellow', 'purple', 'orange'];
 
+    
     return <ul className='note-list'>
         {notes.map(note => (
             <li key={note.id} className='note-card' >
