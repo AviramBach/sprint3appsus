@@ -1,11 +1,22 @@
 .mail-preview {
     display: grid;
-    grid-template-columns: 1fr 1fr 3fr 2fr 4fr 2fr;
+    grid-template-columns: 1fr 3fr 2fr 4fr 2fr;
     align-items: center;
     gap: 5px;
 }
 
-.btn-star,
+.btn-star {
+    width: 1em;
+    height: 1em;
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 50%;
+    border: 1px solid black;
+}
+
+.stared {
+    background-color: yellow;
+}
+
 .btn-read,
 .btn-remove {
     background-color: rgba(0, 0, 0, 0);
@@ -17,5 +28,18 @@
 .btn-remove:hover,
 .btn-read:hover {
     cursor: pointer;
-    background-color: lightgray;
+    background-color: rgb(162, 160, 160);
+}
+
+.mail-controls {
+    display: none;
+    justify-self: end;
+}
+
+.time-span {
+    justify-self: end;
+}
+
+.unread {
+    font-weight: bold;
 }

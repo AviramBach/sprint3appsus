@@ -8,10 +8,20 @@
 
  .mail-list li {
      padding: 5px;
-     border: 1px solid gray;
+     border: 1px solid rgb(176, 176, 176);
+     /* height: 1em; */
  }
 
  .mail-list li:hover {
-     background-color: rgb(204, 204, 204);
      cursor: default;
+     border: 1px solid gray;
+     box-shadow: 0.5px 0.5px 1px 1px;
+ }
+
+ li:hover .mail-controls {
+     display: block;
+ }
+ 
+ li:hover .time-span {
+     display: none;
  }

@@ -14,7 +14,8 @@
 
 @import './apps/note/views/NoteIndex.css';
 
-/* @import './apps/mail/views/MailIndex.css'; */
+@import './apps/mail/views/MailIndex.css';
+@import './apps/mail/views/MailDetails.css';
 
 /* Cmps */
 

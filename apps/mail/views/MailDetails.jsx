@@ -9,17 +9,26 @@ export function MailDetails() {
     const { mailId } = useParams()
     const navigate = useNavigate()
 
-    
-    console.log(mail)
+
+    // console.log(mail)
     useEffect(() => {
         mailService.get(mailId)
-          .then(setMail)
-          .catch(err => {
-            console.log('err:', err)
-            navigate('/mail')
-          })
-      }, [mailId])
-    
+            .then(setMail)
+            .catch(err => {
+                console.log('err:', err)
+                navigate('/mail')
+            })
+    }, [mailId])
+
+    function onRemoveMail(mailId) {
+        mailService.remove(mailId)
+            .then(() => navigate('/mail'))
+            .catch(err => {
+                console.error(err)
+                // showErrorMsg(`Problem Removing ${mailId}`)
+            })
+    }
+
     function onBack() {
         navigate('/mail')
     }
@@ -31,8 +40,14 @@ export function MailDetails() {
 
     return (
         <section className="mail-details">
-            <button onClick={onBack}>←</button>
-            <h2>{mail.subject} <span>{(Date.now() - mail.sentAt > 10000000) ? date : hour}</span></h2>
+            <section className="mail-header">
+                <button onClick={onBack}>←</button>
+                <button className='btn-remove' onClick={() => onRemoveMail(mailId)}>🗑</button>
+            </section>
+            <section className="mail-subject">
+                <h2>{mail.subject}</h2>
+                <p>{(Date.now() - mail.sentAt > 10000000) ? date : hour}</p>
+            </section>
             <h3>{mail.from}</h3>
             <h4>{mail.to}</h4>
             <p>{mail.body}</p>

@@ -1,4 +1,6 @@
 import { MailPreview } from './MailPreview.jsx'
+const { useNavigate } = ReactRouterDOM
+
 
 export function MailList({ mails, onRemoveMail }) {
 

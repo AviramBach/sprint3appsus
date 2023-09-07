@@ -35,6 +35,7 @@ export const mailService = {
     remove,
     save,
     getDefaultCriteria,
+    getEmptyMail,
 }
 
 function query(criteria) {
@@ -42,6 +43,10 @@ function query(criteria) {
         if (criteria.status === 'inbox') {
             console.log('inbox')
             mails = mails.filter(mail => mail.from !== loggedinUser.email)
+        }
+        if (criteria.status === 'sent') {
+            console.log('sent')
+            mails = mails.filter(mail => mail.from === loggedinUser.email)
         }
         if (criteria.txt) {
             console.log(criteria.txt)
@@ -89,23 +94,25 @@ function _createEmails() {
     if (!mails || !mails.length) {
         mails = [
             _createEmail('Welcome!', 'Some text'),
-            _createEmail('New Email!', 'Some more text', 'momo@momo.com', 'user@appsus.com'),
-            _createEmail('Newer', 'Hey, how are you? We would like to inform you', 'support@spotify.com', 'user@appsus.com'),
-            _createEmail('Email!', 'Some more longer text', 'momo@momo.com', 'user@appsus.com', true),
-            _createEmail('Hello!', 'Long text, with some more text. more, and even more', 'popo@gmail.com', 'user@appsus.com'),
-            _createEmail('Time to go!!', 'More, and more', 'user@appsus.com', 'lopo12@gmail.com'),
-            _createEmail('Another day!', 'Text short', 'lopo12@gmail.com')
+            _createEmail('New Email!', 'Some more text', false, true),
+            _createEmail('Newer', 'Hey, how are you? We would like to inform you', true, true, 'user@appsus.com', 'support@spotify.com'),
+            _createEmail('Email!', 'Some more longer text', false, false, 'user@appsus.com', 'momo@momo.com'),
+            _createEmail('Security Alert', 'Hey, We would like to inform you', true, false, 'user@appsus.com', 'support@gmail.com'),
+            _createEmail('Hello!', 'Long text, with some more text. more, and even more', true, false, 'popo@gmail.com', 'user@appsus.com'),
+            _createEmail('Time to go!!', 'More, and more', false, false, 'user@appsus.com', 'lopo12@gmail.com'),
+            _createEmail('Another day!', 'Text short', true, true, 'lopo12@gmail.com')
         ]
         _saveToStorage(MAILS_KEY, mails)
     }
 }
 
-function _createEmail(subject = '', body = '', from = 'user@appsus.com', to = 'momo@momo.com', isRead = false) {
+function _createEmail(subject = '', body = '', isRead = true, isStared = false, to = '', from = 'user@appsus.com') {
     return {
         id: utilService.makeId(5),
         subject,
         body,
         isRead,
+        isStared,
         sentAt: Date.now(),
         removedAt: null,
         from,
@@ -121,6 +128,10 @@ function getDefaultCriteria() {
         sort: 'date',
         lables: ['important', 'romantic']
     }
+}
+
+function getEmptyMail() {
+    return _createEmail()
 }
 
 function _saveToStorage(key, val) {

@@ -1,3 +1,4 @@
+import { MailCompose } from '../cmps/MailCompose.jsx'
 import { MailList } from '../cmps/MailList.jsx'
 import { SideFilter } from '../cmps/SideFilter.jsx'
 import { TopFilter } from '../cmps/TopFilter.jsx'
@@ -35,9 +36,11 @@ export function MailIndex() {
     if (!mails) return <div>Loading...</div>
     return (
         <section className='mail-index'>
+            <button className='btn-compose'>✎</button>
             <TopFilter criteria={criteria} onSetCriteria={onSetCriteria} />
             <MailList mails={mails} onRemoveMail={onRemoveMail} />
-            <SideFilter />
+            <SideFilter criteria={criteria} onSetCriteria={onSetCriteria} />
+            {false && <MailCompose />}
         </section>)
 }
 
