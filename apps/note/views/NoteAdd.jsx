@@ -7,24 +7,23 @@ const { useNavigate, useParams } = ReactRouterDOM
 
 
 
-export function NoteAdd({onAddNote}) {
+export function NoteAdd({ onAddNote }) {
     const [noteToAdd, setNoteToAdd] = useState(noteService.getEmptyNote())
     const [formSubmitted, setFormSubmitted] = useState(false);
-    const navigate = useNavigate()
     const params = useParams()
-    const [notes, setNotes] = useState(null)
+    // const navigate = useNavigate()
+    // const [notes, setNotes] = useState(null)
 
     useEffect(() => {
-         loadNote()
-    }, [formSubmitted])
+        if (params.noteId) loadNote()
+    }, [])
 
-   
+
     function loadNote() {
-        // noteService
-        //     .get(noteToAdd.id)
-        //     .then(setNoteToAdd)
-        //     .catch(err => console.log('err:', err))
-        setNoteToAdd(noteToAdd)
+        noteService
+            .get(params.noteId)
+            .then(setNoteToAdd)
+            .catch(err => console.log('err:', err))
     }
 
     function handleChange({ target }) {
@@ -53,61 +52,55 @@ export function NoteAdd({onAddNote}) {
                 default:
                     break
             }
-
             setNoteToAdd(prevNoteToAdd => ({
                 ...prevNoteToAdd,
                 [field]: value
             }))
         }
     }
-        function onSubmitNote(ev) {
-            ev.preventDefault()
-            noteService
-                .save(noteToAdd)
-                .then(() => {
-                    //   showSuccessMsg(`Note saved successfully`)
-                    setFormSubmitted(true)
-                    resetForm()
-                })
-                .catch(err => {
-                    console.log('err:', err)
-                    //   showErrorMsg("Couldn't save note")
-                })
-        }
 
-        const resetForm = () => {
-            setNoteToAdd(noteService.getEmptyNote());
-            setFormSubmitted(false);
-        };
+    function onSubmitNote(ev) {
+        ev.preventDefault()
+        onAddNote(noteToAdd)
+        setFormSubmitted(!formSubmitted)
+        resetForm()
+        // navigate('/note')
+    }
+       
 
-        
-        return (
-            <section className='add-note'>
+function resetForm() {
+    setNoteToAdd(noteService.getEmptyNote())
+    setFormSubmitted(!formSubmitted)
+}
 
-                <h2>Your note</h2>
-                <form onSubmit={onSubmitNote}>
-                    <label htmlFor='title'></label>
-                    <input
-                        value={noteToAdd.info.title}
-                        onChange={handleChange}
-                        type='text'
-                        placeholder='Title'
-                        id='title'
-                        name='title'
-                        className='title-input'
-                    />
 
-                    <label htmlFor='txt'></label>
-                    {noteToAdd.type !== 'NoteTodos' &&  <input
-                        value={noteToAdd.info.txt}
-                        onChange={handleChange}
-                        type='text'
-                        placeholder='Take a note...'
-                        id='txt'
-                        name='txt'
-                    />}
+return (
+    <section className='add-note'>
 
-                    {/* {noteToAdd.type === 'NoteTodos' && (
+        <h2>Your note</h2>
+        <form onSubmit={onSubmitNote}>
+            <label htmlFor='title'></label>
+            <input
+                value={noteToAdd.info.title}
+                onChange={handleChange}
+                type='text'
+                placeholder='Title'
+                id='title'
+                name='title'
+                className='title-input'
+            />
+
+            <label htmlFor='txt'></label>
+            {noteToAdd.type !== 'NoteTodos' && <input
+                value={noteToAdd.info.txt}
+                onChange={handleChange}
+                type='text'
+                placeholder='Take a note...'
+                id='txt'
+                name='txt'
+            />}
+
+            {/* {noteToAdd.type === 'NoteTodos' && (
                         <div className='edit-note-todos'>
                             <label htmlFor='todos'>Todos:</label>
                             <ul>
@@ -137,9 +130,9 @@ export function NoteAdd({onAddNote}) {
 
 
 
-                    <button className="save-btn" >Save</button>
-                </form>
-                {/* <button className="close-btn" onClick={onBack}>Back</button> */}
-            </section>
-        )
+            <button className="save-btn" >Save</button>
+        </form>
+        {/* <button className="close-btn" onClick={onBack}>Back</button> */}
+    </section>
+)
     }
