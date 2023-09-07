@@ -29,11 +29,11 @@ export function NoteIndex() {
             })
     }
 
-    function onAddNote(noteId) {
+    function onAddNote(newNote) {
         noteService
-            .save(noteId)
-            .then(() => {
-                setNotes(prevNotes => prevNotes.push(note => note.id === noteId))
+            .save(newNote)
+            .then((newNote) => {
+                setNotes(prevNotes => [...prevNotes, newNote])
                 // showSuccessMsg(`Note Removed! ${noteId}`)
             })
             .catch(err => {
