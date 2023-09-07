@@ -80,6 +80,7 @@ export function NoteAdd({onAddNote}) {
             setFormSubmitted(false);
         };
 
+        
         return (
             <section className='add-note'>
 
