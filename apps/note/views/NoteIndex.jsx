@@ -34,6 +34,7 @@ export function NoteIndex() {
     return <section className='note-index'>
 
         <Link to='/note/edit'>Add Note</Link>
+        {/* <NoteAdd/> */}
         <NoteList notes={notes} onRemoveNote={onRemoveNote} />
     
     </section>

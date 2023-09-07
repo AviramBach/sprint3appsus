@@ -78,7 +78,7 @@ export function NoteEdit() {
 
                 <h2>Your note</h2>
                 <form onSubmit={onSubmitNote}>
-                    <label htmlFor='title'>Title: </label>
+                    <label htmlFor='title'></label>
                     <input
                         value={noteToAdd.title}
                         onChange={handleChange}
@@ -88,18 +88,18 @@ export function NoteEdit() {
                         name='title'
                     />
 
-                    <label htmlFor='txt'>Text:</label>
-                    <input
+                    <label htmlFor='txt'></label>
+                    {noteToAdd.type !== 'NoteTodos' &&  <input
                         value={noteToAdd.text}
                         onChange={handleChange}
                         type='text'
-                        placeholder='text'
+                        placeholder='Take a note...'
                         id='txt'
                         name='txt'
-                    />
+                    />}
 
                     {noteToAdd.type === 'NoteTodos' && (
-                        <div>
+                        <div className='edit-note-todos'>
                             <label htmlFor='todos'>Todos:</label>
                             <ul>
                                 {noteToAdd.info.todos.map((todo, index) => (
@@ -128,7 +128,7 @@ export function NoteEdit() {
 
 
 
-                    <button>Save</button>
+                    <button className="save-btn">Save</button>
                 </form>
                 <button className="close-btn" onClick={onBack}>Back</button>
             </section>
