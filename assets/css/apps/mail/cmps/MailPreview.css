@@ -5,26 +5,25 @@
     gap: 5px;
 }
 
-.btn-star {
-    width: 1em;
-    height: 1em;
-    background-color: rgba(0, 0, 0, 0);
-    border-radius: 50%;
-    border: 1px solid black;
-}
-
-.stared {
-    background-color: yellow;
-}
-
+.btn-star,
 .btn-read,
 .btn-remove {
+    height: 1.5rem;
+    width: 1.5rem;
     background-color: rgba(0, 0, 0, 0);
     border-radius: 50%;
     border: none;
 }
 
-.btn-star:hover,
+.btn-star.stared {
+    color: yellow;
+}
+
+.btn-star:hover {
+    cursor: pointer;
+    scale: 1.1;
+}
+
 .btn-remove:hover,
 .btn-read:hover {
     cursor: pointer;
@@ -42,4 +41,11 @@
 
 .unread {
     font-weight: bold;
+}
+
+.long-txt {
+    font-size: 0.8em;
+    color: gray;
+    height: 1em;
+    overflow: hidden;
 }

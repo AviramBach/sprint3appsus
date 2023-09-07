@@ -60,7 +60,7 @@ function query(criteria) {
         }
         if (criteria.sort === 'date') {
             console.log('date')
-            // mails = mails.
+            mails = mails.sort((mail1, mail2) => mail2.sentAt - mail1.sentAt)
         }
         if (criteria.sort === 'name') {
             console.log('name')
@@ -93,27 +93,27 @@ function _createEmails() {
     let mails = _loadFromStorage(MAILS_KEY)
     if (!mails || !mails.length) {
         mails = [
-            _createEmail('Welcome!', 'Some text'),
-            _createEmail('New Email!', 'Some more text', false, true),
-            _createEmail('Newer', 'Hey, how are you? We would like to inform you', true, true, 'user@appsus.com', 'support@spotify.com'),
-            _createEmail('Email!', 'Some more longer text', false, false, 'user@appsus.com', 'momo@momo.com'),
-            _createEmail('Security Alert', 'Hey, We would like to inform you', true, false, 'user@appsus.com', 'support@gmail.com'),
-            _createEmail('Hello!', 'Long text, with some more text. more, and even more', true, false, 'popo@gmail.com', 'user@appsus.com'),
-            _createEmail('Time to go!!', 'More, and more', false, false, 'user@appsus.com', 'lopo12@gmail.com'),
-            _createEmail('Another day!', 'Text short', true, true, 'lopo12@gmail.com')
+            _createEmail(utilService.makeId(), 'Welcome!', 'Some text'),
+            _createEmail(utilService.makeId(), 'New Email!', 'Some more text', false, true),
+            _createEmail(utilService.makeId(), 'Newer', 'Hey, how are you? We would like to inform you', true, true, 'user@appsus.com', 'support@spotify.com', Date.now() - (60 * 10 ** 5)),
+            _createEmail(utilService.makeId(), 'Email!', 'Some more longer text', false, false, 'user@appsus.com', 'momo@momo.com'),
+            _createEmail(utilService.makeId(), 'Security Alert', 'Hey, We would like to inform you', true, false, 'user@appsus.com', 'support@gmail.com', Date.now() - (40 * 10 ** 7)),
+            _createEmail(utilService.makeId(), 'Hello!', 'Long text, with some more text. more, and even more', true, false, 'popo@gmail.com', 'user@appsus.com', Date.now() - (40 * 10 ** 5)),
+            _createEmail(utilService.makeId(), 'Time to go!!', 'More, and more', false, true, 'user@appsus.com', 'lopo12@gmail.com', Date.now() - (40 * 10 ** 6)),
+            _createEmail(utilService.makeId(), 'Another day!', 'Text short', true, true, 'lopo12@gmail.com')
         ]
         _saveToStorage(MAILS_KEY, mails)
     }
 }
 
-function _createEmail(subject = '', body = '', isRead = true, isStared = false, to = '', from = 'user@appsus.com') {
+function _createEmail(id = '', subject = '', body = '', isRead = true, isStared = false, to = '', from = 'user@appsus.com', sentAt = Date.now()) {
     return {
-        id: utilService.makeId(5),
+        id,
         subject,
         body,
         isRead,
         isStared,
-        sentAt: Date.now(),
+        sentAt,
         removedAt: null,
         from,
         to

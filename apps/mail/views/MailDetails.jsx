@@ -41,8 +41,8 @@ export function MailDetails() {
     return (
         <section className="mail-details">
             <section className="mail-header">
-                <button onClick={onBack}>←</button>
-                <button className='btn-remove' onClick={() => onRemoveMail(mailId)}>🗑</button>
+                <button onClick={onBack}><i class="fa-solid fa-arrow-left"></i></button>
+                <button className='btn-remove' onClick={() => onRemoveMail(mailId)}><i class="fa-regular fa-trash-can"></i></button>
             </section>
             <section className="mail-subject">
                 <h2>{mail.subject}</h2>

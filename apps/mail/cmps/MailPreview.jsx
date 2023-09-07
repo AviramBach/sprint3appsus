@@ -9,7 +9,8 @@ export function MailPreview({ mail, onRemoveMail }) {
     const hour = `${new Date(sentAt).getHours()}:${new Date(sentAt).getMinutes()}`
     return (
         <section className="mail-preview">
-            <button className={`btn-star ${(isStared) ? 'stared' : 'unstared'}`}></button>
+            {!isStared && <button className='btn-star unstared'><i class="fa-regular fa-star"></i></button>}
+            {isStared && <button className='btn-star stared'><i class="fa-solid fa-star"></i></button>}
             <span onClick={() => navigate(id)} className={`${(isRead) ? 'read' : 'unread'}`}>{from}</span>
             <span onClick={() => navigate(id)} className={`${(isRead) ? 'read' : 'unread'}`}>{subject}</span>
             <span className={`long-txt ${(isRead) ? 'read' : 'unread'}`} onClick={() => navigate(id)}>
@@ -17,8 +18,9 @@ export function MailPreview({ mail, onRemoveMail }) {
             </span>
             <span className={`time-span ${(isRead) ? 'read' : 'unread'}`} onClick={() => navigate(id)}>{(Date.now() - sentAt > 10000000) ? date : hour}</span>
             <section className='mail-controls'>
-                <button className='btn-remove' onClick={() => onRemoveMail(id)}>🗑</button>
-                <button className='btn-read'>{(isRead) ? '👁' : '✉'}</button>
+                <button className='btn-remove' onClick={() => onRemoveMail(id)}><i class="fa-regular fa-trash-can"></i></button>
+                {!isRead && <button className='btn-read'><i class="fa-regular fa-envelope"></i></button>}
+                {isRead && <button className='btn-read'><i class="fa-regular fa-envelope-open"></i></button>}
             </section>
         </section>)
 }

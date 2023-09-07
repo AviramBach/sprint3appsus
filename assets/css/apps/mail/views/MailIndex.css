@@ -1,1 +1,14 @@
  /* mail index  */
+
+ .btn-compose {
+     width: 2rem;
+     height: 2rem;
+     background-color: rgb(130, 215, 215);
+     border-radius: 25%;
+     border: none;
+ }
+
+ .btn-compose:hover {
+     scale: 1.2;
+     box-shadow: rgba(186, 186, 186, 0.707) 0.5px 0.5px 0.5px 0.5px;
+ }

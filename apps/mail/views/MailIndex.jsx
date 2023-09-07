@@ -8,12 +8,13 @@ const { useState, useEffect } = React
 
 export function MailIndex() {
     const [mails, setMails] = useState(null)
+    const [isCompose, setCompose] = useState(false)
     const [criteria, setCriteria] = useState(mailService.getDefaultCriteria())
     useEffect(() => {
         mailService.query(criteria).then(mails => {
             setMails(mails)
         })
-    }, [criteria])
+    }, [criteria, isCompose])
 
     function onRemoveMail(mailId) {
         mailService.remove(mailId)
@@ -36,11 +37,11 @@ export function MailIndex() {
     if (!mails) return <div>Loading...</div>
     return (
         <section className='mail-index'>
-            <button className='btn-compose'>✎</button>
+            <button className='btn-compose' onClick={() => setCompose(!isCompose)}>✎</button>
             <TopFilter criteria={criteria} onSetCriteria={onSetCriteria} />
             <MailList mails={mails} onRemoveMail={onRemoveMail} />
             <SideFilter criteria={criteria} onSetCriteria={onSetCriteria} />
-            {false && <MailCompose />}
+            {isCompose && <MailCompose setCompose={setCompose} />}
         </section>)
 }
 

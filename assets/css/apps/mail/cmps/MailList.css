@@ -15,7 +15,7 @@
  .mail-list li:hover {
      cursor: default;
      border: 1px solid gray;
-     box-shadow: 0.5px 0.5px 1px 1px;
+     box-shadow: rgba(186, 186, 186, 0.707) 0.5px 0.5px 1px 1px;
  }
 
  li:hover .mail-controls {
