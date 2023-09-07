@@ -6,19 +6,16 @@
 }
 
 .btn-star,
-.btn-read {
+.btn-read,
+.btn-remove {
     background-color: rgba(0, 0, 0, 0);
+    border-radius: 50%;
     border: none;
 }
 
-.btn-star:hover {
-    cursor: pointer;
-}
-
+.btn-star:hover,
+.btn-remove:hover,
 .btn-read:hover {
     cursor: pointer;
-}
-
-.btn-read.read {
-    background-color: yellow;
+    background-color: lightgray;
 }
