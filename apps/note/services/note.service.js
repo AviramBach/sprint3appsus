@@ -13,7 +13,7 @@ let notes = [{
         backgroundColor: 'white'
     },
     info: {
-        title: `Read at least 2 articals from 'Medium Daily Digest' a week`,
+        title: `Read at least 2 articles from 'Medium Daily Digest' a week`,
         txt: 'fullstack & data engineering' 
     }
 },
@@ -93,7 +93,7 @@ let notes = [{
     createdAt: 0,
     type: 'NoteTxt', isPinned: false,
     style: {
-        backgroundColor: 'white'
+        backgroundColor: 'SlateBlue'
     },
     info: {
         title: `David's wedding at 15.10.23`
@@ -104,7 +104,7 @@ let notes = [{
     createdAt: 0,
     type: 'NoteTxt', isPinned: false,
     style: {
-        backgroundColor: 'Gray'
+        backgroundColor: 'LightGray'
     },
     info: {
         title: 'Dont forget to study PROSPERO part in the SHAKESPEARE play for school',
@@ -137,7 +137,6 @@ let notes = [{
 
 _createNotes()
 
-
 export const noteService = {
     query,
     get,
@@ -152,8 +151,6 @@ export const noteService = {
     // addReview,
     // deleteReview,
 }
-
-
 
 function query(filterBy) {
     return storageService.query(NOTES_KEY).then(notes => {

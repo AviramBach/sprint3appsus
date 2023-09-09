@@ -1,5 +1,5 @@
 * {
-    font-family: "Roboto", sans-serif;
+    font-family: "Roboto", arial, sans-serif;
 }
 
 .edit-note {
@@ -52,6 +52,12 @@ input#txt{
     font-size: 1rem;
     font-weight: bold;
     display: flex;
+    margin-top: 2em;
+}
+
+.close-container{
+    display: flex;
+    justify-content: end;
 }
 
 .close-btn {
@@ -60,8 +66,8 @@ input#txt{
     cursor: pointer;
     font-size: 1rem;
     font-weight: bold;
-    display: flex;
     display: inline;
+    
 }
 
 
