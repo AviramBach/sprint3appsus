@@ -1,7 +1,7 @@
 const { useState, useEffect } = React
 
 export function SideFilter({ criteria, onSetCriteria, mailsLength }) {
-    console.log(mailsLength)
+    // console.log(mailsLength)
     const [criteriaFrom, setCriteria] = useState(criteria)
     useEffect(() => {
         onSetCriteria(criteriaFrom)

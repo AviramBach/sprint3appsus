@@ -30,16 +30,37 @@ export function MailIndex() {
     }
 
     function onSetCriteria(criteria) {
-        console.log('setCriteria', criteria)
+        // console.log('setCriteria', criteria)
         setCriteria(prevCriteria => ({ ...prevCriteria, ...criteria }))
     }
 
     function onMarkRead(id) {
-        console.log(`marking ${id}`)
+        // console.log(`marking ${id}`)
         mailService.get(id)
             .then((mail) => {
                 mail.isRead = !mail.isRead
-                mailService.save(mail)
+                mailService.save(mail).then(() => {
+                    mailService.query(criteria).then(mails => {
+                        setMails(mails)
+                    })
+                })
+            })
+            .catch(err => {
+                console.log('err:', err)
+                navigate('/mail')
+            })
+    }
+
+    function onMarkStar(id) {
+        // console.log(`marking ${id}`)
+        mailService.get(id)
+            .then((mail) => {
+                mail.isStared = !mail.isStared
+                mailService.save(mail).then(() => {
+                    mailService.query(criteria).then(mails => {
+                        setMails(mails)
+                    })
+                })
             })
             .catch(err => {
                 console.log('err:', err)
@@ -52,7 +73,7 @@ export function MailIndex() {
         <section className='mail-index'>
             <button className='btn-compose' onClick={() => setCompose(!isCompose)}>✎</button>
             <TopFilter criteria={criteria} onSetCriteria={onSetCriteria} />
-            <MailList mails={mails} onRemoveMail={onRemoveMail} criteria={criteria} onMarkRead={onMarkRead} />
+            <MailList mails={mails} onRemoveMail={onRemoveMail} criteria={criteria} onMarkRead={onMarkRead} setCompose={setCompose} onMarkStar={onMarkStar} />
             <SideFilter criteria={criteria} onSetCriteria={onSetCriteria} mailsLength={mails.length} />
             {isCompose && <MailCompose setCompose={setCompose} />}
         </section>)
