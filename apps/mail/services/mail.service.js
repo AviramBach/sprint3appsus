@@ -42,11 +42,15 @@ function query(criteria) {
     return storageService.query(MAILS_KEY).then(mails => {
         if (criteria.status === 'inbox') {
             console.log('inbox')
-            mails = mails.filter(mail => mail.from !== loggedinUser.email)
+            mails = mails.filter(mail => mail.from !== loggedinUser.email && !mail.removedAt)
         }
         if (criteria.status === 'sent') {
             console.log('sent')
-            mails = mails.filter(mail => mail.from === loggedinUser.email)
+            mails = mails.filter(mail => mail.from === loggedinUser.email && !mail.removedAt)
+        }
+        if (criteria.status === 'trash') {
+            console.log('trash')
+            mails = mails.filter(mail => mail.removedAt)
         }
         if (criteria.txt) {
             console.log(criteria.txt)
@@ -57,6 +61,9 @@ function query(criteria) {
         }
         if (criteria.filter === 'read') {
             mails = mails.filter(mail => mail.isRead)
+        }
+        if (criteria.filter === 'star') {
+            mails = mails.filter(mail => mail.isStared)
         }
         if (criteria.sort === 'date') {
             console.log('date')
@@ -78,7 +85,13 @@ function get(mailId) {
 }
 
 function remove(mailId) {
-    return storageService.remove(MAILS_KEY, mailId)
+    return get(mailId).then(mail => {
+        if (!mail.removedAt) {
+            mail.removedAt = Date.now()
+            return storageService.put(MAILS_KEY, mail)
+        }
+        return storageService.remove(MAILS_KEY, mailId)
+    })
 }
 
 function save(mail) {
@@ -93,8 +106,8 @@ function _createEmails() {
     let mails = _loadFromStorage(MAILS_KEY)
     if (!mails || !mails.length) {
         mails = [
-            _createEmail(utilService.makeId(), 'Welcome!', 'Some text'),
-            _createEmail(utilService.makeId(), 'New Email!', 'Some more text', false, true),
+            _createEmail(utilService.makeId(), 'Welcome!', 'Some text', true, false, 'user@appsus.com', 'popo@gmail.com'),
+            _createEmail(utilService.makeId(), 'New Email!', 'Some more text', false, true, 'gilad@gmail.com'),
             _createEmail(utilService.makeId(), 'Newer', 'Hey, how are you? We would like to inform you', true, true, 'user@appsus.com', 'support@spotify.com', Date.now() - (60 * 10 ** 5)),
             _createEmail(utilService.makeId(), 'Email!', 'Some more longer text', false, false, 'user@appsus.com', 'momo@momo.com'),
             _createEmail(utilService.makeId(), 'Security Alert', 'Hey, We would like to inform you', true, false, 'user@appsus.com', 'support@gmail.com', Date.now() - (40 * 10 ** 7)),

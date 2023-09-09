@@ -1,0 +1,19 @@
+ /* about */
+
+ .about {
+     font-family: Helvetica, Arial, sans-serif;
+     background-color: #f6f8fc;
+     text-align: center;
+ }
+
+ .about h1 {
+    color: #041e49;
+    font-size: 2em;
+    margin-bottom: 1em;
+    padding: 5px;
+}
+
+.about h2 {
+    color: #0a3374;
+    margin-bottom: 1em;
+}

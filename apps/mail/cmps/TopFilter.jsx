@@ -19,17 +19,19 @@ export function TopFilter({ criteria, onSetCriteria }) {
 
     return (
         <section className="top-filter">
-            <input type="text" placeholder="Search" name="txt" onChange={handleChange} />
-            <select name="sort" id="sort" onChange={handleChange}>
-                <option value="date">Date</option>
-                <option value="name">Name</option>
-            </select>
-            <select name="filter" id="filter" onChange={handleChange}>
-                <option value="all">All</option>
-                <option value="read">Read</option>
-                <option value="unread">Unread</option>
-                <option value="star">Star</option>
-            </select>
+            <input type="text" placeholder={"🔎 Search"} name="txt" onChange={handleChange} />
+            <section className="mail-select">
+                <select name="sort" id="sort" onChange={handleChange}>
+                    <option value="date">Date</option>
+                    <option value="name">Name</option>
+                </select>
+                <select name="filter" id="filter" onChange={handleChange}>
+                    <option value="all">All</option>
+                    <option value="read">Read</option>
+                    <option value="unread">Unread</option>
+                    <option value="star">Star</option>
+                </select>
+            </section>
         </section>
     )
 }

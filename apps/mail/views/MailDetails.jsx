@@ -13,7 +13,11 @@ export function MailDetails() {
     // console.log(mail)
     useEffect(() => {
         mailService.get(mailId)
-            .then(setMail)
+            .then((mail) => {
+                mail.isRead = true
+                mailService.save(mail)
+                setMail(mail)
+            })
             .catch(err => {
                 console.log('err:', err)
                 navigate('/mail')

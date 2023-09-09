@@ -14,7 +14,7 @@ export function MailIndex() {
         mailService.query(criteria).then(mails => {
             setMails(mails)
         })
-    }, [criteria, isCompose])
+    }, [criteria, isCompose, mails])
 
     function onRemoveMail(mailId) {
         mailService.remove(mailId)
@@ -34,13 +34,26 @@ export function MailIndex() {
         setCriteria(prevCriteria => ({ ...prevCriteria, ...criteria }))
     }
 
+    function onMarkRead(id) {
+        console.log(`marking ${id}`)
+        mailService.get(id)
+            .then((mail) => {
+                mail.isRead = !mail.isRead
+                mailService.save(mail)
+            })
+            .catch(err => {
+                console.log('err:', err)
+                navigate('/mail')
+            })
+    }
+
     if (!mails) return <div>Loading...</div>
     return (
         <section className='mail-index'>
             <button className='btn-compose' onClick={() => setCompose(!isCompose)}>✎</button>
             <TopFilter criteria={criteria} onSetCriteria={onSetCriteria} />
-            <MailList mails={mails} onRemoveMail={onRemoveMail} />
-            <SideFilter criteria={criteria} onSetCriteria={onSetCriteria} />
+            <MailList mails={mails} onRemoveMail={onRemoveMail} criteria={criteria} onMarkRead={onMarkRead} />
+            <SideFilter criteria={criteria} onSetCriteria={onSetCriteria} mailsLength={mails.length} />
             {isCompose && <MailCompose setCompose={setCompose} />}
         </section>)
 }

@@ -49,9 +49,9 @@ export function MailCompose({ setCompose }) {
         <section className="mail-compose">
             <div className="compose-header">
                 <h2>New Email</h2>
-                <button className="btn-compose-close">X</button>
+                <button className="btn-compose-close" onClick={() => setCompose(false)}><i class="fa-solid fa-xmark"></i></button>
             </div>
-            <form action="">
+            <form>
                 <input
                     value={mailToAdd.to}
                     onChange={handleChange}
@@ -69,15 +69,16 @@ export function MailCompose({ setCompose }) {
                     required
                 />
                 <input
+                    className="mail-compose-body"
                     value={mailToAdd.body}
                     onChange={handleChange}
                     type='text'
                     name='body'
                 />
+                <div className="compose-footer">
+                    <button className="btn-send" onClick={onSubmitMail}>Send</button>
+                </div>
             </form>
-            <div className="compose-footer">
-                <button className="btn-send" onClick={onSubmitMail}>Send</button>
-            </div>
         </section>
     )
 }
