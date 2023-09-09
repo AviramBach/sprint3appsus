@@ -1,4 +1,4 @@
-.user-msg {
+/* .user-msg {
     background-color: lightgray;
     padding: 1em;
     position: absolute;
@@ -12,6 +12,36 @@
 
 .user-msg.error {
     background-color: lightpink;
+}
+
+
+.user-msg button{
+    float: right;
+    margin: 1em;
+} */
+
+* {
+    font-family: "Roboto", arial, sans-serif;
+}
+
+.user-msg {
+    background-color: rgba(255, 255, 255, 0.397);
+    padding: 0.1em;
+    position: fixed;
+    bottom: 0.15em;
+    right: 1em;
+    font-weight: 600;
+    font-size: 0.9em;
+    /* border: 1px solid #e0e1e0; */
+}
+
+.user-msg.success {
+    background-color:rgba(255, 255, 255, 0.397);
+    
+}
+
+.user-msg.error {
+    background-color: rgba(255, 255, 255, 0.397);
 }
 
 

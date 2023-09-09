@@ -6,7 +6,6 @@ const { useState, useEffect } = React
 const { useNavigate, useParams } = ReactRouterDOM
 
 
-
 export function NoteEdit() {
     const [noteToAdd, setNoteToAdd] = useState(noteService.getEmptyNote())
     const navigate = useNavigate()
@@ -77,7 +76,9 @@ export function NoteEdit() {
 
         return (
             <section className='edit-note'>
-
+                <div className="close-container">
+                <button className="close-btn" onClick={onBack}><i class="fa-solid fa-xmark"></i></button>
+                </div>
                 <h2>Your note</h2>
                 <form onSubmit={onSubmitNote}>
                     <label htmlFor='title'></label>
@@ -133,7 +134,7 @@ export function NoteEdit() {
 
                     <button className="save-btn">Save</button>
                 </form>
-                <button className="close-btn" onClick={onBack}>Back</button>
+                
             </section>
         )
     }

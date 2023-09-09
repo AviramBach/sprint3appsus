@@ -6,7 +6,6 @@ const { useState, useEffect } = React
 const { useNavigate, useParams } = ReactRouterDOM
 
 
-
 export function NoteAdd({ onAddNote }) {
     const [noteToAdd, setNoteToAdd] = useState(noteService.getEmptyNote())
     const [formSubmitted, setFormSubmitted] = useState(false);
@@ -17,7 +16,6 @@ export function NoteAdd({ onAddNote }) {
     useEffect(() => {
         if (params.noteId) loadNote()
     }, [])
-
 
     function loadNote() {
         noteService
@@ -67,12 +65,10 @@ export function NoteAdd({ onAddNote }) {
         // navigate('/note')
     }
        
-
 function resetForm() {
     setNoteToAdd(noteService.getEmptyNote())
     setFormSubmitted(!formSubmitted)
 }
-
 
 return (
     <section tabindex="0" className='add-note'>
@@ -126,8 +122,6 @@ return (
                             </ul>
                         </div>
                     )} */}
-
-
 
 
             <button className="save-btn" >Save</button>
