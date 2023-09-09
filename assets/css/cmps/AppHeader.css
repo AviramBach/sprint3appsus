@@ -1,4 +1,4 @@
-header {
+/* header {
 
     background: lightcyan;
     border-bottom: 2px solid white;
@@ -22,4 +22,75 @@ nav a.active {
     color: darkblue;
     font-weight: bold;
     text-decoration: overline;
-}
+} */
+
+.app-header {
+    display: flex;
+    justify-content: space-between; /* Adjusted to create space between logo and button */
+    align-items: center;
+    padding: 10px 0;
+    position: relative;
+    background-color:lightyellow;
+    /* border-top: 1px solid #dadce0;  */
+    border-bottom: 1px solid #dadce0;
+  }
+ 
+  .logo{
+    height: 2.2em;
+    width: 2.2em;
+    
+  }
+
+  .menu-button {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 10px;
+  }
+  
+  .bar {
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    margin: 3px 0;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+  
+  nav {
+    display: none;
+    flex-direction: column;
+    align-items:center;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: lightyellow;
+    /* border: solid 1px black; */
+    /* border-bottom: 2px solid white; */
+    z-index: 1;
+    width: 4em;
+   
+  }
+  
+  nav.open {
+    display: flex;
+    
+  }
+  
+  nav a {
+    margin: 0.5em;
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s;
+    text-align: center;
+  }
+  
+  nav a:hover {
+    color: black;
+    font-weight: 700;
+  }
+  
+  nav a.active {
+    color: rgb(34, 34, 224);
+    font-weight: 900;
+    /* text-decoration: overline; */
+  }

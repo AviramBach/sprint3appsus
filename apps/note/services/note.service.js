@@ -10,7 +10,7 @@ let notes = [{
     createdAt: 1112222,
     type: 'NoteTxt', isPinned: true,
     style: {
-        backgroundColor: '#00d'
+        backgroundColor: 'white'
     },
     info: {
         txt: 'Fullstack Me Baby!'
@@ -39,7 +39,10 @@ let notes = [{
             { txt: 'Driving license', doneAt: null },
             { txt: 'Coding power', doneAt: 187111111 }
         ]
-    }
+    },
+    style: {
+                backgroundColor: 'white'
+        }
 }
 ]
 
@@ -102,7 +105,7 @@ function getEmptyNote() {
         type: 'NoteTxt',
         isPinned: false,
         style: {
-            backgroundColor: '#00d'
+            backgroundColor: 'white'
         },
         info:{
         title: '',

@@ -2,7 +2,7 @@
     font-family: "Roboto", sans-serif;
 }
 
-.edit-note {
+/* .add-note {
     background: #fff;
     max-width: 50vw;
     max-height: 50vh;
@@ -11,6 +11,27 @@
     box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
     border: 1px solid #e0e1e0;
     border-radius: 8px;
+} */
+
+.add-note {
+    background: #fff;
+    max-width: 50vw;
+    max-height: 50vh;
+    width:  30em; /* Initial width, adjust as needed */
+    height: 1.5em; /* Initial height, adjust as needed */
+    margin: 60px auto;
+    padding: 2em 1em;
+    box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
+    border: 1px solid #e0e1e0;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: width 0.3s, height 0.3s; /* Add transitions for width and height */
+}
+
+.add-note:focus-within:not(input)  {
+    width: 30em; /* Expanded width on hover, adjust as needed */
+    height: 10em; /* Expanded height on hover, adjust as needed */
+    outline: none; 
 }
 
 form {

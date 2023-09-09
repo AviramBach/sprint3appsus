@@ -42,14 +42,16 @@ export function NoteIndex() {
             })
     }
 
-    function onChangeNoteColor(noteId) {
+
+    function onChangeNoteColor(noteId, color) {
         noteService
             .get(noteId)
             .then(updatedNote => {
                 // Update the color of the note in the state
-                setNotes(prevNotes =>
-                    prevNotes.map(note => (note.id === noteId ? { ...note, color: updatedNote.color } : note))
-                )
+                setNotes(prevNotes => prevNotes.map(note =>{
+                    if (note.id === noteId)   note.style.backgroundColor =color
+                    return note
+                }))
                 // showSuccessMsg(`Note Removed! ${noteId}`)
             })
             .catch(err => {
@@ -57,6 +59,40 @@ export function NoteIndex() {
                 // showErrorMsg(`Problem Removing ${noteId}`)
             })
     }
+
+//this is for duplicate feature !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // function onChangeNoteColor(noteId, color) {
+    //     noteService
+    //         .get(noteId)
+    //         .then(updatedNote => {
+    //             // Update the color of the note in the state
+    //             setNotes(prevNotes => [...prevNotes, { ...updatedNote,  style : {backgroundColor:color} }]
+                   
+    //             )
+    //             // showSuccessMsg(`Note Removed! ${noteId}`)
+    //         })
+    //         .catch(err => {
+    //             console.error(err)
+    //             // showErrorMsg(`Problem Removing ${noteId}`)
+    //         })
+    // }
+
+//this is for pin feature!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//  function onChangeNoteColor(noteId, color) {
+//         noteService
+//             .get(noteId)
+//             .then(updatedNote => {
+//                 // Update the color of the note in the state
+//                 setNotes(prevNotes => [...prevNotes.filter(note => note.id !== noteId), { ...updatedNote,  style : {backgroundColor:color} }]        
+//                 )
+//                 // showSuccessMsg(`Note Removed! ${noteId}`)
+//             })
+//             .catch(err => {
+//                 console.error(err)
+//                 // showErrorMsg(`Problem Removing ${noteId}`)
+//             })
+//     }
+
 
 
     console.log(notes)

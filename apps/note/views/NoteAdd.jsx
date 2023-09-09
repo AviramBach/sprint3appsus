@@ -75,9 +75,9 @@ function resetForm() {
 
 
 return (
-    <section className='add-note'>
+    <section tabindex="0" className='add-note'>
 
-        <h2>Your note</h2>
+        <h2>Take a note...</h2>
         <form onSubmit={onSubmitNote}>
             <label htmlFor='title'></label>
             <input

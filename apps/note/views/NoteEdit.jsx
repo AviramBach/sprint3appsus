@@ -76,7 +76,7 @@ export function NoteEdit() {
         }
 
         return (
-            <section className='add-note'>
+            <section className='edit-note'>
 
                 <h2>Your note</h2>
                 <form onSubmit={onSubmitNote}>
