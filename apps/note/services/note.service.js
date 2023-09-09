@@ -8,12 +8,13 @@ const NOTES_KEY = 'notesDB'
 let notes = [{
     id: 'n101',
     createdAt: 1112222,
-    type: 'NoteTxt', isPinned: true,
+    type: 'NoteTxt', isPinned: false,
     style: {
         backgroundColor: 'white'
     },
     info: {
-        txt: 'Fullstack Me Baby!'
+        title: `Read at least 2 articals from 'Medium Daily Digest' a week`,
+        txt: 'fullstack & data engineering' 
     }
 },
 // {
@@ -41,9 +42,97 @@ let notes = [{
         ]
     },
     style: {
-                backgroundColor: 'white'
+                backgroundColor: 'Orange'
         }
+},
+{
+    id: 'n104',
+    createdAt: 0,
+    type: 'NoteTodos', 
+    isPinned: false,
+    style: {
+        backgroundColor: 'Violet'
+    },
+    info: 
+    {
+        title: 'Grocery list',
+        todos: [
+            { txt: 'Bananas', doneAt: null },
+            { txt: 'Eggs', doneAt: null },
+            { txt: 'Milk', doneAt: null },
+            { txt: 'Coffee', doneAt: null }
+        ]
+    }
+},
+{
+    id: 'n105',
+    createdAt: 0,
+    type: 'NoteTxt', isPinned: false,
+    style: {
+        backgroundColor: 'MediumSeaGreen'
+    },
+    info: {
+        title: 'Yoga class at 16:00',
+        txt: 'Dont forget sweatpants!'
+    }
+},
+{
+    id: 'n106',
+    createdAt: 0,
+    type: 'NoteTxt', isPinned: false,
+    style: {
+        backgroundColor: 'DodgerBlue'
+    },
+    info: {
+        title: 'Facebook password',
+        txt: 'codingAcademy4u'
+    }
+},
+{
+    id: 'n107',
+    createdAt: 0,
+    type: 'NoteTxt', isPinned: false,
+    style: {
+        backgroundColor: 'white'
+    },
+    info: {
+        title: `David's wedding at 15.10.23`
+    }
+},
+{
+    id: 'n108',
+    createdAt: 0,
+    type: 'NoteTxt', isPinned: false,
+    style: {
+        backgroundColor: 'Gray'
+    },
+    info: {
+        title: 'Dont forget to study PROSPERO part in the SHAKESPEARE play for school',
+        txt: `Our revels now are ended. These our actors,
+        As I foretold you, were all spirits and
+        Are melted into air, into thin air:
+        And, like the baseless fabric of this vision,
+        The cloud-capp’d towers, the gorgeous palaces,
+        The solemn temples, the great globe itself,
+        Yea all which it inherit, shall dissolve
+        And, like this insubstantial pageant faded,
+        Leave not a rack behind. We are such stuff
+        As dreams are made on, and our little life
+        Is rounded with a sleep.`
+    }
+},
+{
+    id: 'n109',
+    createdAt: 0,
+    type: 'NoteTxt', isPinned: false,
+    style: {
+        backgroundColor: 'Tomato'
+    },
+    info: {
+        title: 'Buy present for John',
+    }
 }
+
 ]
 
 _createNotes()

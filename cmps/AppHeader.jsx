@@ -33,7 +33,7 @@ export function AppHeader() {
             </Link>
             <div className="menu-button" onClick={toggleMenu}>
                 {/* <i class="fa-solid fa-layer-group"></i> */}
-                <img src="./assets/img/menu.png" alt="" />
+                <img  className="menu-img" src="./assets/img/menu.png" alt="" />
             </div>
             <nav className={menuOpen ? 'open' : ''}>
                 

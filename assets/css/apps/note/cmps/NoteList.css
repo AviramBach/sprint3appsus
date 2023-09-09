@@ -4,7 +4,6 @@
 }
 
 
-
 .note-list { 
     list-style: none;
     column-count: 3; /* Adjust the number of columns as needed */
@@ -59,6 +58,31 @@
     /* font-size: 1rem; */
  }
 
+ .btn-note-color-pallet{
+    background: none;
+    border: none;
+    cursor: pointer;
+ }
+
+ .color-pallet{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1em;
+    cursor: pointer;
+    
+    position: absolute;
+    z-index: 9999; /* You can adjust the z-index as needed */
+    
+    /* Additional styling for the color-pallet element if needed */
+    background-color: white;
+    padding: 10px;
+    border: 1px solid #ccc;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+ }
+
+
+ 
  .btn-note-edit{
     background: none;
     border: none;

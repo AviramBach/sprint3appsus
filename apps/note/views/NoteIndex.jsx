@@ -49,15 +49,17 @@ export function NoteIndex() {
             .then(updatedNote => {
                 // Update the color of the note in the state
                 setNotes(prevNotes => prevNotes.map(note =>{
-                    if (note.id === noteId)   note.style.backgroundColor =color
+                    if (note.id === noteId) { note.style.backgroundColor =color
+                        noteService.save(note)}
                     return note
-                }))
+                })) 
                 // showSuccessMsg(`Note Removed! ${noteId}`)
             })
             .catch(err => {
                 console.error(err)
                 // showErrorMsg(`Problem Removing ${noteId}`)
             })
+            
     }
 
 //this is for duplicate feature !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
