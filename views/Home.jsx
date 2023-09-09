@@ -8,10 +8,10 @@ export function Home() {
         <h3>Our Apps</h3>
         <section className="our-apps">
             <button className="to-mail">
-                <Link to="/mail"><i class="fa-regular fa-envelope"></i></Link>
+                <Link to="/mail"><img className="gmail-logo" src="./assets/img/Gmail.png" alt="" /></Link>
             </button>
             <button className="to-keep">
-                <Link to="/note"><i class="fa-regular fa-clipboard"></i></Link>
+                <Link to="/note"><img className="keep-logo" src="./assets/img/keep.png" alt="" /></Link>
             </button>
         </section>
     </section>

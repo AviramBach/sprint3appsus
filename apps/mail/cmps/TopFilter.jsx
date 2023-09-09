@@ -11,7 +11,7 @@ export function TopFilter({ criteria, onSetCriteria }) {
         const field = target.name
         let value = target.value
         criteria[field] = value
-        console.log(field, value)
+        // console.log(field, value)
         // setCriteria(prevCriteria => ({ ...prevCriteria, [field]: value }))
         setCriteria(criteria)
     }

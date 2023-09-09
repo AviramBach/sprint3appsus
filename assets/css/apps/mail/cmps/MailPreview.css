@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: 1fr 4fr 5fr 4fr 2fr;
     align-items: center;
-    gap: 1em;
+    gap: 1.2rem;
 }
 
 .mail-preview span:nth-child(2) {
@@ -10,7 +10,18 @@
 }
 
 .mail-preview span:nth-child(3) {
+    font-size: .9em;
     width: max-content;
+}
+
+/* .mail-preview .draft::before {
+    color: red;
+    content: 'Draft';
+} */
+
+.mail-preview .draft {
+    color: red;
+    margin-left: 1em;
 }
 
 .btn-star,
@@ -55,6 +66,6 @@
 .long-txt {
     font-size: 0.8em;
     color: gray;
-    height: 1em;
+    height: 1.2em;
     overflow: hidden;
 }

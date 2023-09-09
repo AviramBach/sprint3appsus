@@ -19,8 +19,8 @@
  }
 
  .home h3 {
-    color: #4988ed;
-    font-size: 2em;
+     color: #4988ed;
+     font-size: 2em;
  }
 
  .our-apps {
@@ -32,7 +32,6 @@
 
  .to-mail,
  .to-keep {
-     color: #cddaf2;
      display: flex;
      justify-content: center;
      align-items: center;
@@ -41,7 +40,7 @@
      padding: 2em;
      border-radius: 1em;
      border: none;
-     background-color: #4988ed;
+     background-color: #cddaf2;
  }
 
  .to-mail:hover,
@@ -50,3 +49,14 @@
      scale: 1.1;
      background-color: #0a3374;
  }
+
+ .gmail-logo,
+ .keep-logo {
+     width: 35px;
+ }
+
+ /* .gmail-logo:hover,
+ .keep-logo:hover {
+     scale: 1.1;
+     cursor: pointer;
+ } */

@@ -1,21 +1,25 @@
 import { mailService } from "../services/mail.service.js"
 
 const { useState, useEffect } = React
-const { useNavigate, useParams } = ReactRouterDOM
+const { useNavigate, useSearchParams } = ReactRouterDOM
 
 export function MailCompose({ setCompose }) {
     const [mailToAdd, setMailToAdd] = useState(mailService.getEmptyMail())
     const navigate = useNavigate()
-    const params = useParams()
-    console.log(mailToAdd)
+    const [searchParams, setSearchParams] = useSearchParams()
+    // console.log(mailToAdd)
     // console.log(setCompose)
     useEffect(() => {
-        if (params.mailId) loadmail()
+        // console.log(searchParams.get('id'))
+        if (searchParams.get('id')) {
+            const mailId = searchParams.get('id')
+            loadmail(mailId)
+        }
     }, [])
 
-    function loadmail() {
-        console.log('laoding mail')
-        mailService.get(params.mailId)
+    function loadmail(mailId) {
+        // console.log('laoding mail')
+        mailService.get(mailId)
             .then(setMailToAdd)
             .catch(err => console.log('err:', err))
     }
@@ -23,18 +27,36 @@ export function MailCompose({ setCompose }) {
     function handleChange({ target }) {
         const field = target.name
         let value = target.value
-        console.log('field', field)
-        console.log('value', value)
+        // console.log('field', field)
+        // console.log('value', value)
         setMailToAdd(prevMailToAdd => ({ ...prevMailToAdd, [field]: value }))
     }
 
     function onSubmitMail(ev) {
         ev.preventDefault()
-        console.log(mailToAdd.id)
+        // console.log(mailToAdd.sentAt)
+        // console.log(mailToAdd.isDraft)
+        mailToAdd.isDraft = false
+        mailToAdd.sentAt = Date.now()
         mailService.save(mailToAdd)
             .then(() => {
                 // showSuccessMsg(`mail saved successfully`)
                 console.log('mail saved successfully')
+                setCompose(false)
+                navigate('/mail')
+            })
+            .catch(err => {
+                console.log('err:', err)
+                // showErrorMsg("Couldn't save mail")
+            })
+    }
+
+    function onSetDraft() {
+        // mailToAdd.sentAt = ''
+        mailService.save(mailToAdd)
+            .then(() => {
+                // showSuccessMsg(`mail saved successfully`)
+                console.log('mail saved to drafts')
                 setCompose(false)
                 navigate('/mail')
             })
@@ -49,7 +71,7 @@ export function MailCompose({ setCompose }) {
         <section className="mail-compose">
             <div className="compose-header">
                 <h2>New Email</h2>
-                <button className="btn-compose-close" onClick={() => setCompose(false)}><i class="fa-solid fa-xmark"></i></button>
+                <button className="btn-compose-close" onClick={() => onSetDraft()}><i class="fa-solid fa-xmark"></i></button>
             </div>
             <form>
                 <input
