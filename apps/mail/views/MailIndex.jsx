@@ -14,7 +14,7 @@ export function MailIndex() {
         mailService.query(criteria).then(mails => {
             setMails(mails)
         })
-    }, [criteria, isCompose, mails])
+    }, [criteria, isCompose])
 
     function onRemoveMail(mailId) {
         mailService.remove(mailId)
