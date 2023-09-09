@@ -2,7 +2,6 @@ const { useState, useEffect } = React
 
 export function TopFilter({ criteria, onSetCriteria }) {
     const [criteriaFrom, setCriteria] = useState(criteria)
-    // console.log(criteriaFrom)
     useEffect(() => {
         onSetCriteria(criteriaFrom)
     }, [criteriaFrom])
@@ -11,7 +10,6 @@ export function TopFilter({ criteria, onSetCriteria }) {
         const field = target.name
         let value = target.value
         criteria[field] = value
-        // console.log(field, value)
         // setCriteria(prevCriteria => ({ ...prevCriteria, [field]: value }))
         setCriteria(criteria)
     }

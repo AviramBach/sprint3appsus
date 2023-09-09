@@ -5,8 +5,10 @@
     gap: 1.2rem;
 }
 
+
 .mail-preview span:nth-child(2) {
     font-size: .9em;
+    min-width: 120px;
 }
 
 .mail-preview span:nth-child(3) {

@@ -9,11 +9,10 @@ export function MailPreview({ mail, onRemoveMail, criteria, onMarkRead, setCompo
     const [searchParams, setSearchParams] = useSearchParams()
 
     function openDraftMail(mailId) {
-        // console.log(mailId)
-        // console.log(searchParams)
         setSearchParams({ id: mailId })
         setCompose(true)
     }
+
 
     const date = `${new Date(sentAt).getDate()}.${new Date(sentAt).getMonth()}.${new Date(sentAt).getFullYear()}`
     const minutes = new Date(sentAt).getMinutes()
@@ -24,7 +23,6 @@ export function MailPreview({ mail, onRemoveMail, criteria, onMarkRead, setCompo
             {isStared && <button className='btn-star stared' onClick={() => onMarkStar(id)}><i class="fa-solid fa-star"></i></button>}
             {(currFolder !== 'draft') && <span onClick={() => navigate(id)} className={`${(isRead) ? 'read' : 'unread'}`}>{(currFolder === 'inbox' || currFolder === 'trash') ? from : to}</span>}
             {(currFolder === 'draft') && <span onClick={() => openDraftMail(id)} className='read draft'>{'Draft'}</span>}
-            {/* <span onClick={() => (currFolder !== 'draft') ? navigate(id) : openDraftMail(id)} className={`${(isRead) ? 'read' : 'unread'}`}>{(currFolder === 'inbox' || currFolder === 'trash') ? from : to}</span> */}
             <span onClick={() => (currFolder !== 'draft') ? navigate(id) : openDraftMail(id)} className={`${(isRead) ? 'read' : 'unread'}`}>{subject}</span>
             <span className={`long-txt ${(isRead) ? 'read' : 'unread'}`} onClick={() => (currFolder !== 'draft') ? navigate(id) : openDraftMail(id)}>
                 <LongTxt txt={body} length={body.length} />

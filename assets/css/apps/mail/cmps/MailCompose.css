@@ -3,7 +3,6 @@
     bottom: 5px;
     left: 20px;
     width: 50vw;
-    height: 60vh;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -55,12 +54,15 @@
 }
 
 .mail-compose-body {
-    height: 40vh;
+    height: 45vh;
     border: none;
 }
 
 .compose-footer {
-    margin-top: 5px;
+    display: flex;
+    align-items: start;
+    margin-top: 0;
+    padding: 0.5em;
 }
 
 .btn-send {
@@ -76,7 +78,7 @@
     cursor: pointer;
 }
 
-@media screen and (max-width: 470px) {
+@media screen and (max-width: 600px) {
     .mail-compose {
         width: 90vw;
     }
@@ -94,6 +96,7 @@
     .top-filter {
         grid-row: 1;
         grid-column: 2;
+        margin-top: .5em;
     }
 
     .side-filter {
@@ -109,6 +112,14 @@
     .mail-list {
         grid-row: 3;
         grid-column: 2;
+    }
+
+    .long-txt {
+        display: none;
+    }
+
+    .mail-preview {
+        grid-template-columns: 1fr 4fr 4fr 2fr;
     }
 
 }

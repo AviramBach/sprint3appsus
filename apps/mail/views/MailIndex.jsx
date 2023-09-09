@@ -3,6 +3,8 @@ import { MailList } from '../cmps/MailList.jsx'
 import { SideFilter } from '../cmps/SideFilter.jsx'
 import { TopFilter } from '../cmps/TopFilter.jsx'
 import { mailService } from '../services/mail.service.js'
+import { UserMsg } from '../../../cmps/UserMsg.jsx'
+import { eventBusService } from '../../../services/event-bus.service.js'
 
 const { useState, useEffect } = React
 
@@ -30,12 +32,10 @@ export function MailIndex() {
     }
 
     function onSetCriteria(criteria) {
-        // console.log('setCriteria', criteria)
         setCriteria(prevCriteria => ({ ...prevCriteria, ...criteria }))
     }
 
     function onMarkRead(id) {
-        // console.log(`marking ${id}`)
         mailService.get(id)
             .then((mail) => {
                 mail.isRead = !mail.isRead
@@ -52,7 +52,6 @@ export function MailIndex() {
     }
 
     function onMarkStar(id) {
-        // console.log(`marking ${id}`)
         mailService.get(id)
             .then((mail) => {
                 mail.isStared = !mail.isStared

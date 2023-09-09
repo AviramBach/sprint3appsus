@@ -1,8 +1,12 @@
 .mail-details {
     display: flex;
     flex-direction: column;
-    width: 90vw;
+    width: 80vw;
     margin: auto;
+    margin-top: 1em;
+    padding: 2rem;
+    background-color: #f6f8fc;
+    border-radius: 1em;
 }
 
 .mail-details button {
@@ -19,6 +23,15 @@
     cursor: pointer;
 }
 
+.mail-details .btn-star {
+    justify-self: center;
+    margin-bottom: 1em;
+}
+
+.mail-details .btn-star:hover {
+    background-color: rgba(128, 128, 128, 0);
+}
+
 .mail-details .mail-subject {
     display: flex;
     justify-content: space-between;
@@ -27,11 +40,13 @@
 
 .mail-details h3 {
     margin-bottom: 1rem;
+    font-size: 0.8rem;
 }
 
 .mail-details h4 {
     font-weight: 100;
     margin-bottom: 1rem;
+    font-size: 0.8rem;
 }
 
 .mail-details p {
