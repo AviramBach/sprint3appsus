@@ -79,6 +79,7 @@ export function NoteIndex() {
                 console.error(err)
                 // showErrorMsg(`Problem Removing ${noteId}`)
             })
+      
             
     }
 
